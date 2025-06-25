@@ -1,29 +1,22 @@
+import 'package:first_app/pages/First_page.dart';
+import 'package:first_app/pages/SecondPage.dart';
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-              'FlowUX',
-            style: TextStyle(
-              color: Colors.white
-            ),
-          ),
-        ),
-        backgroundColor: Colors.black,
-      ),
-      body: Center(
-        child: Text(
-          'Welcome Home',
-          style: TextStyle(
-            color: Colors.white
-          ),
-        ),
-      ),
-      backgroundColor: Colors.black,
-    ),
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: FirstPage(),
+      routes: {
+        '/secondpage': (context) => SecondPage(),
+      },
+    );
+  }
 }
