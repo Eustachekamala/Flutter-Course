@@ -1,5 +1,6 @@
-import 'package:first_app/pages/First_page.dart';
-import 'package:first_app/pages/SecondPage.dart';
+import 'package:first_app/pages/home_page.dart';
+import 'package:first_app/pages/landing_page.dart';
+import 'package:first_app/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -7,15 +8,17 @@ void main(){
 }
 
 class MyApp extends StatelessWidget{
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirstPage(),
+      home: LandingPage(),
       routes: {
-        '/secondpage': (context) => SecondPage(),
+        '/landingpage': (context) => LandingPage(),
+        '/homepage' : (context) => HomePage(),
+        '/settingspage': (context) => SettingPage()
       },
     );
   }
