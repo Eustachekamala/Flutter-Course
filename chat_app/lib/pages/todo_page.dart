@@ -24,6 +24,14 @@ class _ToDoPageState  extends State<ToDoPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Chat app',
+          style: TextStyle(
+            fontSize: 28,
+          ),
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
