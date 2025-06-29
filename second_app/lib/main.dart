@@ -11,76 +11,73 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.teal,
+            brightness: Brightness.dark
+        )
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: Text(
-              'Demo Home Page',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                    color: Colors.white
+          title: Text('Flutter App'),
+          centerTitle: false,
+          leading: Padding(
+            padding: const EdgeInsets.all(4),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50.0),
+              child: Image.asset(
+                'assets/images/bg.jpg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          backgroundColor: Colors.deepPurple,
+          actions: [
+            IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.message, size: 24, color: Colors.white,),
+            ),
+            IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.favorite, size: 24, color: Colors.white,),
+            ),
+          ],
+          backgroundColor: Colors.teal,
         ),
+
         floatingActionButton: FloatingActionButton(
           onPressed: (){},
-          backgroundColor: Colors.deepPurple,
-          autofocus: WidgetsApp.showPerformanceOverlayOverride,
-          child: Icon(Icons.add, size: 20, color: Colors.white,),
+          backgroundColor: Colors.teal,
+          child: Icon(Icons.add, color: Colors.white,),
         ),
-        body: Stack(
-          children: [
-            Image.asset(
-                'assets/images/bg.jpg',
-                fit: BoxFit.cover,
-                height: 300,
-            ),
-            SizedBox(
-              height: 300,
-              child: Center(
-                child: Text(
-                  'Flutter',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30),),
+        bottomNavigationBar: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home, size: 30, color: Colors.white,),
+                  label: 'Home',
               ),
-            )
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(items: [
-          //home button
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                size: 26, color:
-              Colors.deepPurple,),
-              label: 'Home'),
-
-          //about
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_balance_wallet_outlined,
-                size: 26, color: Colors.deepPurple,),
-              label: 'About'),
-
-          //Profile
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                size: 26,
-                color: Colors.deepPurple,),
-              label: 'Profile'),
-
-          //settings
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-                size: 26,
-                color: Colors.deepPurple,),
-              label: 'Settings'),
-        ]),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search, size: 30, color: Colors.white,),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.play_circle, size: 30, color: Colors.white,),
+                label: 'Reels',
+              ),
+              BottomNavigationBarItem(
+                icon: ClipRRect(
+                  borderRadius: BorderRadius.circular(13.0),
+                  child: Image.asset(
+                    'assets/images/Jared.jpeg',
+                    width: 30,
+                    height: 30,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                label: 'Profile',
+              )
+            ]),
       ),
     );
   }
