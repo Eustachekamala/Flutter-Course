@@ -1,83 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:second_app/pages/home.dart';
+import 'package:second_app/pages/profile.dart';
+import 'package:second_app/pages/reels.dart';
+import 'package:second_app/pages/search.dart';
 
 void main(){
-  runApp(MyApp());
+  runApp(FlowUX());
 }
 
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
+class FlowUX extends StatefulWidget{
+  const FlowUX({super.key});
 
+  @override
+  State<FlowUX> createState() => _FlowUXState();
+}
+
+int _selectedIndex = 0;
+
+//List of widgets to display based on the selected index
+const List<Widget> _widgetsOptions = <Widget>[
+  Home(),
+  Search(),
+  Reels(),
+  Profile(),
+];
+
+class _FlowUXState extends State<FlowUX> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.teal,
-            brightness: Brightness.dark
-        )
+          seedColor: Colors.teal,
+          brightness: Brightness.dark,
+        ),
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter App'),
-          centerTitle: false,
-          leading: Padding(
-            padding: const EdgeInsets.all(4),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50.0),
-              child: Image.asset(
-                'assets/images/bg.jpg',
-                width: 30,
-                height: 30,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.message, size: 24, color: Colors.white,),
-            ),
-            IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.favorite, size: 24, color: Colors.white,),
-            ),
-          ],
-          backgroundColor: Colors.teal,
+        body: Center(
+          child: _widgetsOptions.elementAt(_selectedIndex),
         ),
-
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){},
-          backgroundColor: Colors.teal,
-          child: Icon(Icons.add, color: Colors.white,),
+        bottomNavigationBar: NavigationBar(destinations: [
+          NavigationDestination(
+              icon: Icon(Icons.home),
+              label: 'Home'),
+          NavigationDestination(
+              icon: Icon(Icons.search),
+              label: 'Search'),
+          NavigationDestination(
+              icon: Icon(Icons.play_circle_fill),
+              label: 'Reels'),
+          NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Settings'),
+        ],
+          onDestinationSelected: (int value){
+            setState(() {
+              _selectedIndex = value;
+            });
+          },
+          selectedIndex: _selectedIndex,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home, size: 30, color: Colors.white,),
-                  label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search, size: 30, color: Colors.white,),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.play_circle, size: 30, color: Colors.white,),
-                label: 'Reels',
-              ),
-              BottomNavigationBarItem(
-                icon: ClipRRect(
-                  borderRadius: BorderRadius.circular(13.0),
-                  child: Image.asset(
-                    'assets/images/Jared.jpeg',
-                    width: 30,
-                    height: 30,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                label: 'Profile',
-              )
-            ]),
       ),
     );
   }
